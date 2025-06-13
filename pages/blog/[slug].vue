@@ -31,8 +31,8 @@ useSeoMeta({
 
         <!-- Meta information -->
         <div class="blog-meta">
-          <time v-if="post.meta?.date" :datetime="post.meta.date">
-            {{ new Date(post.meta.date).toLocaleDateString('vi-VN') }}
+          <time v-if="post.meta?.date" :datetime="String(post.meta.date)">
+            {{ new Date(String(post.meta.date)).toLocaleDateString('vi-VN') }}
           </time>
           <span v-if="post.meta?.author">bởi {{ post.meta.author }}</span>
           <span v-if="post.meta?.readingTime">{{ post.meta.readingTime }} phút đọc</span>

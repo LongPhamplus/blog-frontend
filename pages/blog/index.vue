@@ -4,11 +4,14 @@ const { data: blogs } = await useAsyncData('blogs', () => {
         .all()
 })
 
-onMounted(() => {
-    for (const blog of blogs.value) {
-        console.log(blog.path)
-    }
-})
+function formatDate(dateStr: string): string {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('vi-VN', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+}
 </script>
 
 <template>
@@ -21,7 +24,7 @@ onMounted(() => {
         </header>
 
         <div class="blog-grid">
-            <article v-for="blog in blogs" :key="blog._path" class="blog-card">
+            <article v-for="blog in blogs" :key="blog.path" class="blog-card">
                 <!-- Blog Image -->
                 <div class="blog-image">
                     <img v-if="blog.image" :src="blog.image" :alt="blog.title" class="w-full h-48 object-cover">
