@@ -1,4 +1,5 @@
 import { defineContentConfig, defineCollection } from '@nuxt/content'
+import { z } from 'zod'
 
 export default defineContentConfig({
     collections: {
@@ -8,7 +9,10 @@ export default defineContentConfig({
         }),
         blog: defineCollection({
             type: 'page',
-            source: '1.blog/**/*.md'
+            source: '1.blog/**/*.md',
+            schema: z.object({
+                readingTime: z.number().optional()
+            })
         })
     }
 })
